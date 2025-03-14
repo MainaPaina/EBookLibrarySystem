@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Book_Library_Management_System.Models.Entities.Book>
+<h1 class="text-center my-4">List of Books</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>ID</th> *@
+            <th>Book Picture</th>    
+            <th>BookTitle</th>
+            <th>Genre</th>
+            <th>Author</th>
+            <th>AccessType</th>
+            <th>Rating</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr class="align-middle">
+                @* <td>@book.Id</td> *@
+                <td> 
+                    @if(book.BookPicture != null)
+                    {
+                        <img src="data:image/jpeg; base64, @Convert.ToBase64String(book.BookPicture)" width="100" height="120"/>
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>@book.BookTitle</td>
+                <td>@book.Genre</td>
+                <td>@book.Author</td>
+                <td>
+                    @if(book.PdfFile != null)
+                    {
+                        <a href="@Url.Action("DownloadPdf", "Books", new { id = book.BookId })" target="_blank" class="btn btn-info">Download PDF</a>
+                        <a href="@Url.Action("PreviewPdf", "Books", new { id = book.BookId })" class="btn btn-success ms-2">Preview PDF</a>
+                    }
+                    else
+                        {
+                            <span>No PDF</span>
+                        }
+                </td>
+                <td align="center" class="starRatings">
+                    @for(int i = 1; i < 6; i++)
+                    {
+                        if (book.Rating >= i)
+                        {
+                        <img src="/images/icons8-star-96-full.png" alt="@i star">
+                        }
+                        else
+                        {
+                        <img src="/images/icons8-star-96-clear.png" alt="@i star">
+                        }
+                    }<br />
+                    @book.Rating.ToString("0.0") (@book.NumberOfUserRatings)
+                    </td>
+                <td>
+                    <a asp-controller="Rating" asp-action="Add" asp-route-id="@book.BookId"
+                       class="btn btn-warning">Add Rating</a>
+
+                    <a asp-controller="Books" asp-action="Edit" asp-route-id="@book.BookId"
+                       class="btn btn-primary ms-2">Edit</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center mt-5">
+    <a asp-controller="Books" asp-action="Add" class="btn fw-bold text-light" style="background-color: #3B2F2F; font-size: 1.1rem;">
+        Add
+    </a>
+</div>
+
+

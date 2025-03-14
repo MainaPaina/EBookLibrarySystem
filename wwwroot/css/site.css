@@ -1,0 +1,70 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+.btn-info {
+    color: #fff;
+    background-color: #341d08;
+    border-color: #341d08;
+}
+
+    .btn-info:hover {
+        color: #fff;
+        background-color: #4b280a;
+        border-color: #4b280a;
+    }
+.background {
+    background-image: url('../images/img_library.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+html, body {
+    min-height: 100%;
+    padding-bottom:20px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.centered-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px; 
+    border: 2px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+p {
+    margin-top: 0px; 
+}
+
+.starRatings img {
+    width: 2rem;
+}

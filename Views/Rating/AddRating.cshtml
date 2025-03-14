@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model AddRatingModel
+@{
+    
+}
+
+<form method="post">
+
+    @* Name *@
+    <div class="mt-3">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-control" asp-for="Name"/>
+    </div>
+    @* StarRating *@
+    <div class="mt-3 feedbackStars">
+        <img src="/images/icons8-star-96-full.png" alt="1 star" id="feedbackStar1" onclick="javascript: setFeedbackRating(1)">
+        <img src="/images/icons8-star-96-clear.png" alt="2 star" id="feedbackStar2" onclick="javascript: setFeedbackRating(2)">
+        <img src="/images/icons8-star-96-clear.png" alt="3 star" id="feedbackStar3" onclick="javascript: setFeedbackRating(3)">
+        <img src="/images/icons8-star-96-clear.png" alt="4 star" id="feedbackStar4" onclick="javascript: setFeedbackRating(4)">
+        <img src="/images/icons8-star-96-clear.png" alt="5 star" id="feedbackStar5" onclick="javascript: setFeedbackRating(5)">
+        <input type="hidden" asp-for="Rating" id="feedbackStarRating" value="1">
+    </div>
+    @* Button *@
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Add</button>
+        <a asp-action="List" asp-controller="Books" class="btn btn-secondary">Back to list</a>
+    </div>
+
+</form>
+

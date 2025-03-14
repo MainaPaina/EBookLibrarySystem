@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Book_Library_Management_System.Models.AddBookViewModel
+
+<h2>Edit Book</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    @* Id *@
+    <div class="mt-3">
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="Id" readonly />
+    </div>
+
+    @* BookTitle *@
+    <div class="mt-3">
+        <label class="form-label">BookTitle</label>
+        <input type="text" class="form-control" asp-for="BookTitle" />
+    </div>
+
+    @* Genre *@
+    <div class="mt-3">
+        <label class="form-label">Genre</label>
+        <input type="text" class="form-control" asp-for="Genre" />
+    </div>
+
+    @* Author *@
+    <div class="mt-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" asp-for="Author" />
+    </div>
+
+    @* Checkbox *@
+    <div class="mt-3">
+        <input type="checkbox" class="form-check-control" id="subscribed" asp-for="Subscribed" />
+        <label class="form-check-label" for="subscribed">Subscribed</label>
+    </div>
+
+    @* Display Profile Picture *@
+    @if (Model.ExistingBookPicture != null)
+    {
+        <div class="mt-3">
+            <label class="form-label">Cover Image</label>
+            @if (Model.ExistingBookPicture != null)
+            {
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ExistingBookPicture)" width="60" height="80" />
+            }
+            else
+            {
+                <p>No image</p>
+            }
+       
+      
+        </div>
+    }
+    else
+    {
+        <span>No Image</span>
+    }
+
+    @* Update Cover Image *@
+        <div class="mt-3">
+            <label class="form-label">Update Cover Image (optional)</label>
+            <input type="file" class="form-control" asp-for="BookPicture" accept="image/*" />
+        </div>
+
+    @* Display current PDF (if any) *@
+    @if (Model.ExistingPdfFile != null && !string.IsNullOrEmpty(Model.ExistingPdfFileName))
+    {
+        <div class="mt-3">
+            <label class="form-label">Current PDF: </label>
+            <a href="@Url.Action("DownloadPdf", "Books", new { id = Model.Id })" target="_blank">@Model.ExistingPdfFileName</a>
+        </div>
+    }
+
+    @* Update current PDF *@
+    <div class="mt-3">
+        <label class="form-label">Update PDF (Optional)</label>
+        <input type="file" class="form-control" asp-for="PdfFile" accept="application/pdf" />
+    </div>
+
+    @* Button *@
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-danger ms-3" asp-action="Delete"
+         asp-controller="Books">Delete</button>
+        <a asp-action="List" asp-controller="Books" class="btn btn-secondary ms-3">Cancel</a>
+    </div>
+</form>
